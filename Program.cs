@@ -14,11 +14,13 @@ class Program
         int dragonattack = 1000;
         bool Trollactive = false;
         bool Dragonactive = false;
+        string status = "Main Menu";
         int points = 0;
         Console.WriteLine("Hello, Traveler i'm you're inner voice");
         Console.WriteLine("It seems like you've been greeted by a troll blocking your patch");
         Console.WriteLine("What will you do fight the troll or flee?");
         Console.WriteLine("Press Y if you choose to fight. Press N if you decide to flee");
+        Console.WriteLine("Status: " + status);
         string playerinput1 = Console.ReadLine();
         if (playerinput1 == "Y")
         {
@@ -44,6 +46,8 @@ class Program
             Console.WriteLine("Let's fight this troll");
             Console.WriteLine("You swung you're rusty old sword at the troll and wounded it badly");
             troll.TrollTakeDamage(playerattack);
+            status = "In battle";
+            Console.WriteLine("Status: " + status);
             points += 10;
         }
         else if (Dragonactive == true)
@@ -55,6 +59,8 @@ class Program
             Console.WriteLine("You felt as your skin became more and more like a bbq, until you died");
             dragon.DragonTakeDamage(playerattack2);
             player.PlayerTakeDamage(dragonattack);
+            status = "Dead";
+            Console.WriteLine("Status: " + status);
             return;
         }
 
@@ -65,6 +71,8 @@ class Program
             Console.WriteLine("You pulled the dagger out from you're leg and to you're horror saw the Troll charging for you");
             Console.WriteLine("Will you eliminate the Troll or will you try to flee?");
             Console.WriteLine("Press Y if you choose to fight. Press N if you decide to flee");
+            status = "Decision Time";
+            Console.WriteLine("Status: " + status);
         }
         
         string playerinput2 = Console.ReadLine();
@@ -75,8 +83,12 @@ class Program
             troll.TrollTakeDamage(playerattack);
             troll.TrollTakeDamage(playerattack3);
             Console.WriteLine("Congratulations you have eliminated you're first troll");
-            Console.WriteLine("After all this fighting you're left with this much hp");
-            Console.Write(player.PlayerHP);
+            Console.WriteLine("After all this fighting you're left with this much hp: " + player.PlayerHP);
+            Console.WriteLine("You adventure further down the cave and finally get out from it and enter the city");
+            status = "City";
+            Console.WriteLine("Status: " + status);
+
+
             points += 50;
         }
         else if (playerinput2 == "N")
@@ -89,12 +101,16 @@ class Program
             Console.WriteLine("You felt as your skin became more and more like a bbq, until you died");
             dragon.DragonTakeDamage(playerattack2);
             player.PlayerTakeDamage(dragonattack);
+            status = "Dead";
+            Console.WriteLine("Status: " + status);
             points += 15;
             return;
         }
         else 
         {
             Console.WriteLine("The Troll ripped of your head with you his claws");
+            status = "Dead";
+            Console.WriteLine("Status: " + status);
             points += 5;
             return;
         }
